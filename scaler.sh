@@ -35,7 +35,7 @@ declare -A chromium_scale
 ### EDIT HERE >>>
 
 # User variables
-firefox_profile_folder="qt1hw6g9.default-1577473246137" # Your firefox profile id
+firefox_profile_folder="" # Your firefox profile id
 
 # Preset list
 presets=(default 1080p14inch) # Specify your presets here
@@ -117,8 +117,7 @@ sed -i "s/\"window.zoomLevel\": *.*[^,]/\"window.zoomLevel\": ${vscode_scale[$pr
 echo "VSCode zoom set to ${vscode_scale[$preset]}"
 
 
-# CHROMIUM SETTINGS
-# Unfortunately, Chromium doesn't seem to put its .desktop file in ~/.local/share/applications :(
-sudo sed -i "s/Exec=chromium-browser %U.*/Exec=chromium-browser %U --force-device-scale-factor=${chromium_scale[$preset]}/" /usr/share/applications/chromium-browser.desktop \
+# CHROMIUM SNAP SETTINGS
+sudo sed -i "s/\/snap\/bin\/chromium.*%U/\/snap\/bin\/chromium --force-device-scale-factor=${chromium_scale[$preset]} %U/" /var/lib/snapd/desktop/applications/chromium_chromium.desktop \
     || error_exit "Cannot set Chromium config to ${chromium_scale[$preset]}."
 echo "Chromium zoom set to ${chromium_scale[$preset]} - Restart Chromium to see the effect"
