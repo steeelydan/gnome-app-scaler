@@ -28,7 +28,6 @@ declare -A gnome_font_scale
 declare -A gnome_icon_size
 declare -A gnome_cursor_size
 declare -A firefox_scale
-declare -A vscode_scale
 declare -A chromium_scale
 
 
@@ -45,7 +44,6 @@ gnome_font_scale[default]="1.0"
 gnome_icon_size[default]="32"
 gnome_cursor_size[default]="24"
 firefox_scale[default]="1.0"
-vscode_scale[default]="0.0"
 chromium_scale[default]="1.0"
 
 # 1080p, 14" laptop
@@ -53,7 +51,6 @@ gnome_font_scale[1080p14inch]="1.2"
 gnome_icon_size[1080p14inch]="36"
 gnome_cursor_size[1080p14inch]="32"
 firefox_scale[1080p14inch]="1.25"
-vscode_scale[1080p14inch]="1.2"
 chromium_scale[1080p14inch]="1.25"
 
 ### <<< EDIT HERE
@@ -88,7 +85,7 @@ echo "Cursor size set to ${gnome_cursor_size[$preset]} px"
 # FIREFOX SETTINGS
 if [[ ${firefox_profile_folder} == "" ]]; then
     echo "Warning: No Firefox preset folder given."
-else 
+else
     cd "$HOME/.mozilla/firefox/$firefox_profile_folder/" \
         || error_exit "Error: There's no firefox config dir under $HOME/.mozilla/firefox/$firefox_profile_folder/. Exiting."
     # user.js can be missing.
@@ -105,16 +102,6 @@ else
     fi
     echo "Firefox pixels per px set to ${firefox_scale[$preset]} - Restart Firefox to see the effect"
 fi
-
-
-# VSCODE SETTINGS
-cd "$HOME/.config/Code/User" \
-    || error_exit "Error: There's no VSCode config dir under $HOME/.config/Code/User. Exiting."
-sed -i "s/\"window.zoomLevel\": *.*,/\"window.zoomLevel\": ${vscode_scale[$preset]},/" settings.json \
-    || error_exit "Cannot set VSCode config: window.zoomLevel to ${vscode_scale[$preset]}."
-sed -i "s/\"window.zoomLevel\": *.*[^,]/\"window.zoomLevel\": ${vscode_scale[$preset]}/" settings.json \
-    || error_exit "Cannot set VSCode config: window.zoomLevel to ${vscode_scale[$preset]}."
-echo "VSCode zoom set to ${vscode_scale[$preset]}"
 
 
 # CHROMIUM SNAP SETTINGS
