@@ -1,23 +1,39 @@
 {
-    "default": {
-        "gnome": {
-            "font_scale": 1.0,
-            "icon_size": 32,
-            "cursor_size": 24
+    "config": {
+        "firefox": {
+            "profile_folder": "YOUR_PROFILE_NAME"
         }
     },
-    "1080p14inch": {
-        "gnome": {
-            "font_scale": 1.2,
-            "icon_size": 36,
-            "cursor_size": 32
-        }
-    },
-    "4k32inch": {
-        "gnome": {
-            "font_scale": 0.75,
-            "icon_size": 26,
-            "cursor_size": 26
+    "presets": {
+        "default": {
+            "gnome": {
+                "font_scale": 1.0,
+                "icon_size": 32,
+                "cursor_size": 24
+            },
+            "firefox": {
+                "scale": 1.0
+            }
+        },
+        "1080p14inch": {
+            "gnome": {
+                "font_scale": 1.2,
+                "icon_size": 36,
+                "cursor_size": 32
+            },
+            "firefox": {
+                "scale": 1.25
+            }
+        },
+        "4k32inch": {
+            "gnome": {
+                "font_scale": 0.75,
+                "icon_size": 26,
+                "cursor_size": 26
+            },
+            "firefox": {
+                "scale": 1.6
+            }
         }
     }
 }
