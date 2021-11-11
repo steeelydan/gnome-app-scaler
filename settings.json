@@ -1,0 +1,23 @@
+{
+    "default": {
+        "gnome": {
+            "font_scale": 1.0,
+            "icon_size": 32,
+            "cursor_size": 24
+        }
+    },
+    "1080p14inch": {
+        "gnome": {
+            "font_scale": 1.2,
+            "icon_size": 36,
+            "cursor_size": 32
+        }
+    },
+    "4k32inch": {
+        "gnome": {
+            "font_scale": 0.75,
+            "icon_size": 26,
+            "cursor_size": 23
+        }
+    }
+}
