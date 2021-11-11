@@ -57,8 +57,8 @@ chromium_scale[1080p14inch]="1.25"
 gnome_font_scale[4k32]="0.75"
 gnome_icon_size[4k32]="26"
 gnome_cursor_size[4k32]="26"
-firefox_scale[4k32]="1.75"
-chromium_scale[4k32]="1.75"
+firefox_scale[4k32]="1.6"
+chromium_scale[4k32]="1.6"
 
 ### <<< EDIT HERE
 

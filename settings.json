@@ -17,7 +17,7 @@
         "gnome": {
             "font_scale": 0.75,
             "icon_size": 26,
-            "cursor_size": 23
+            "cursor_size": 26
         }
     }
 }
