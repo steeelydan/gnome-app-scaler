@@ -64,17 +64,26 @@ with open('settings.json', 'r') as settings_file:
                     user_js_path = firefox_profile_dir + 'user.js'
                     firefox_settings = presets[chosen_preset]['firefox']
 
+                    new_line = "user_pref('layout.css.devPixelsPerPx', '%s');" % firefox_settings[
+                        'scale'] + '\n'
+
+                    lines = []
+
                     if not os.path.isfile(user_js_path):
                         user_js_raw = open(user_js_path, 'x')
+                        lines.append(new_line)
                     else:
-                        user_js_raw = open(user_js_path)
+                        user_js_raw = open(user_js_path, 'r')
                         lines = user_js_raw.readlines()
-                        for index, line in enumerate(lines):
-                            if line.startswith('user_pref'):
-                                lines[index] = "user_pref('layout.css.devPixelsPerPx', '%s');" % firefox_settings[
-                                    'scale'] + '\n'
-                        user_js_raw.writelines(lines)
+                        if len(lines) == 0:
+                            lines.append(new_line)
+                        else:
+                            for index, line in enumerate(lines):
+                                if line.startswith('user_pref'):
+                                    lines[index] = new_line
                     user_js_raw.close()
+                    user_js_raw = open(user_js_path, 'w')
+                    user_js_raw.writelines(lines)
                     print("Firefox scaling set to %s" %
                           firefox_settings['scale'])
 
