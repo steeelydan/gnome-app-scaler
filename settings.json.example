@@ -13,6 +13,9 @@
             },
             "firefox": {
                 "scale": 1.0
+            },
+            "chromium": {
+                "scale": 1.0
             }
         },
         "1080p14inch": {
@@ -23,6 +26,9 @@
             },
             "firefox": {
                 "scale": 1.25
+            },
+            "chromium": {
+                "scale": 1.25
             }
         },
         "4k32inch": {
@@ -32,6 +38,9 @@
                 "cursor_size": 26
             },
             "firefox": {
+                "scale": 1.6
+            },
+            "chromium": {
                 "scale": 1.6
             }
         }

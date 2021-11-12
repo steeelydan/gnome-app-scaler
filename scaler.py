@@ -64,8 +64,7 @@ with open('settings.json', 'r') as settings_file:
                     user_js_path = firefox_profile_dir + 'user.js'
                     firefox_settings = presets[chosen_preset]['firefox']
 
-                    new_line = "user_pref('layout.css.devPixelsPerPx', '%s');" % firefox_settings[
-                        'scale'] + '\n'
+                    new_line = f"user_pref('layout.css.devPixelsPerPx', '{firefox_settings['scale']}');\n"
 
                     lines = []
 
@@ -84,7 +83,20 @@ with open('settings.json', 'r') as settings_file:
                     user_js_raw.close()
                     user_js_raw = open(user_js_path, 'w')
                     user_js_raw.writelines(lines)
-                    print("Firefox scaling set to %s" %
-                          firefox_settings['scale'])
+                    print(
+                        f"Firefox scaling set to {firefox_settings['scale']}")
+
+                if app_name == 'chromium':
+                    chromium_path = '/var/lib/snapd/desktop/applications/chromium_chromium.desktop'
+                    chromium_settings = presets[chosen_preset]['chromium']
+
+                    with open(chromium_path) as chromium_config:
+                        lines = chromium_config.readlines()
+                        for index, line in enumerate(lines):
+                            if (line.startswith('Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/chromium_chromium.desktop /snap/bin/chromium')):
+                                lines[
+                                    index] = f"Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/chromium_chromium.desktop /snap/bin/chromium --force-device-scale-factor={chromium_settings['scale']} %U\n"
+                        print(chromium_config.read())
+                        chromium_config.writelines(lines)
 
             break
