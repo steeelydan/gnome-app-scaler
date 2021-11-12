@@ -37,7 +37,7 @@ declare -A chromium_scale
 firefox_profile_folder="" # Your firefox profile id
 
 # Preset list
-presets=(default 1080p14inch) # Specify your presets here
+presets=(default 1080p14inch 4k32) # Specify your presets here
 
 # Default preset
 gnome_font_scale[default]="1.0"
