@@ -86,17 +86,20 @@ if __name__ == '__main__':
 
     with open('settings.json', 'r') as settings_file:
         settings_parsed = json.loads(settings_file.read())
-        presets = set(settings_parsed['presets'])
+        presets = settings_parsed['presets']
         config = settings_parsed['config']
 
         if chosen_preset not in presets:
             error('Error: Preset does not exist.')
 
-        for app_name in presets[chosen_preset]:
-            if app_name == 'gnome':
-                apply_gnome(presets[chosen_preset]['gnome'])
-            elif app_name == 'firefox':
-                apply_firefox(firefox_settings=presets[chosen_preset]['firefox'],
-                              firefox_config=config['firefox'])
-            elif app_name == 'chromium':
-                apply_chromium(presets[chosen_preset]['chromium'])
+        for preset_name in presets:
+            if preset_name == chosen_preset:
+                for app_name in presets[chosen_preset]:
+                    if app_name == 'gnome':
+                        apply_gnome(presets[chosen_preset]['gnome'])
+                    elif app_name == 'firefox':
+                        apply_firefox(firefox_settings=presets[chosen_preset]['firefox'],
+                                        firefox_config=config['firefox'])
+                    elif app_name == 'chromium':
+                        apply_chromium(presets[chosen_preset]['chromium'])
+                break
