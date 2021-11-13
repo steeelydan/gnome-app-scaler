@@ -4,6 +4,7 @@ import json
 import os
 import sys
 from pathlib import Path
+import subprocess
 
 
 def error(message):
@@ -39,19 +40,22 @@ with open('settings.json', 'r') as settings_file:
                         if 0 == os.system(f"gsettings set org.gnome.desktop.interface text-scaling-factor {font_scale}"):
                             print(f"Gnome font scale set to {font_scale}")
                         else:
-                            error(f"Error: Gnome font scale could not be set to {font_scale}")
+                            error(
+                                f"Error: Gnome font scale could not be set to {font_scale}")
 
                     if icon_size:
                         if 0 == os.system(f"gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size {icon_size}"):
                             print(f"Gnome icon size set to {icon_size} px")
                         else:
-                            error(f"Error: Gnome icon size could not be set to {icon_size}")
+                            error(
+                                f"Error: Gnome icon size could not be set to {icon_size}")
 
                     if cursor_size:
                         if 0 == os.system(f"gsettings set org.gnome.desktop.interface cursor-size {cursor_size}"):
                             print(f"Gnome cursor size set to {cursor_size} px")
                         else:
-                            error(f"Error: Gnome cursor size could not be set to {cursor_size}")
+                            error(
+                                f"Error: Gnome cursor size could not be set to {cursor_size}")
 
                 if app_name == 'firefox':
                     firefox_config = config['firefox']
@@ -84,14 +88,17 @@ with open('settings.json', 'r') as settings_file:
                 if app_name == 'chromium':
                     chromium_path = '/var/lib/snapd/desktop/applications/chromium_chromium.desktop'
                     chromium_settings = presets[chosen_preset]['chromium']
+                    subprocess.run(
+                        ['sudo', 'sed',  '-i', f"s/\/snap\/bin\/chromium.*%U/\/snap\/bin\/chromium --force-device-scale-factor={chromium_settings['scale']} %U/", '/var/lib/snapd/desktop/applications/chromium_chromium.desktop'])
+                    print(f"Chromium scaling set to {chromium_settings['scale']}")
 
-                    with open(chromium_path) as chromium_config:
-                        lines = chromium_config.readlines()
-                        for index, line in enumerate(lines):
-                            if (line.startswith('Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/chromium_chromium.desktop /snap/bin/chromium')):
-                                lines[
-                                    index] = f"Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/chromium_chromium.desktop /snap/bin/chromium --force-device-scale-factor={chromium_settings['scale']} %U\n"
-                        print(chromium_config.read())
-                        chromium_config.writelines(lines)
+                    # with open(chromium_path) as chromium_config:
+                    #     lines = chromium_config.readlines()
+                    #     for index, line in enumerate(lines):
+                    #         if (line.startswith('Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/chromium_chromium.desktop /snap/bin/chromium')):
+                    #             lines[
+                    #                 index] = f"Exec=env BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/chromium_chromium.desktop /snap/bin/chromium --force-device-scale-factor={chromium_settings['scale']} %U\n"
+                    #     print(chromium_config.read())
+                    #     chromium_config.writelines(lines)
 
             break
