@@ -2,6 +2,7 @@
 
 import json
 import os
+import platform
 import sys
 from pathlib import Path
 import subprocess
@@ -79,6 +80,9 @@ def apply_chromium(chromium_settings):
 
 
 if __name__ == '__main__':
+    if platform.system() != 'Linux':
+        error('This program is only useful on Linux with Gnome Desktop.')
+
     if len(sys.argv) < 2:
         error('Error: You did not specify a preset')
 
