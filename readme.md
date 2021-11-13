@@ -9,37 +9,34 @@ Includes presets for
 -   Gnome Desktop (font size, dock icons, cursor)
 -   Firefox
 -   Chromium
--   VSCode
 
 Of course, you're free to extend the script according to your needs.
 
+## Requirements
+
+Python 3
+
 ## Usage
 
-`./scaler.sh mode`
+-   Enter your Firefox profile directory in `settings.json`
+-   Edit `settings.json` as desired or add presets
+-   `./scaler.py <PRESET>`
 
-Default mode presets:
+Default presets:
 
 -   `default`
 -   `1080p14inch` (Thinkpads,etc.)
+-   `4k32inch` (large 4k monitors)
 
 ### Permissions & Privileges
 
-Configure the appropriate execution permissions for `scaler.sh`.
-Unfortunately, Chromium .desktop file manipulation needs root privileges.
-
-### Make your own preset
-
--   Add your preset by extending the `presets` array
--   Specify your preset's scale values below
+Unfortunately, Chromium `.desktop` file manipulation needs root privileges. The scaler starts a root subprocess & asks you for your password when the time has come.
 
 ### Aliasing
 
-When aliasing, execute via `bash` because `sh` does not support arrays.
 Example:
 
-`alias dpireset='/bin/bash /home/willy/scripts/scaler.sh default'`
-
-## To Do
-
--   Rewrite it in Python :)
--   Interactive config: E.g. ask for Firefox user string once, save it
+```bash
+alias dpireset='/home/willy/scripts/scaler.py default'
+alias dpilaptop='/home/willy/scripts/scaler.py 1080p14inch'
+```
