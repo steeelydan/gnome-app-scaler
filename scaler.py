@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
     with open('settings.json', 'r') as settings_file:
         settings_parsed = json.loads(settings_file.read())
-        presets = set(settings_parsed['presets'])
+        presets = settings_parsed['presets']
         config = settings_parsed['config']
 
         if chosen_preset not in presets:
