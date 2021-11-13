@@ -94,7 +94,7 @@ with open('settings.json', 'r') as settings_file:
                         print(
                             f"Chromium scaling set to {chromium_settings['scale']}")
                     else:
-                        print(
+                        error(
                             f"Error setting chromium scale in: {chromium_path}")
 
             break
