@@ -18,7 +18,7 @@ Python 3
 
 ## Usage
 
--   Enter your Firefox profile directory in `settings.json`
+-   Rename `settings.json.example` to `settings.json` & enter your Firefox profile path
 -   Edit `settings.json` as desired or add presets
 -   `./scaler.py <PRESET>`
 
