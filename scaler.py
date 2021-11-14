@@ -76,7 +76,9 @@ def apply_chromium(chromium_settings):
 
 
 if __name__ == '__main__':
-    if platform.system() != 'Linux':
+    envVars = os.environ.copy()
+
+    if(platform.system() != 'Linux' or (envVars['XDG_CURRENT_DESKTOP'] != 'Unity' and "GNOME" not in envVars['XDG_CURRENT_DESKTOP'])):
         error('This program is only useful on Linux with Gnome Desktop.')
 
     if not os.path.isfile('settings.json'):
