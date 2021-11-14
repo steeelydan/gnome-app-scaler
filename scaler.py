@@ -79,6 +79,9 @@ if __name__ == '__main__':
     if platform.system() != 'Linux':
         error('This program is only useful on Linux with Gnome Desktop.')
 
+    if not os.path.isfile('settings.json'):
+        error('Error: No settings.json found.')
+
     if len(sys.argv) < 2:
         error('Error: You did not specify a preset')
 
