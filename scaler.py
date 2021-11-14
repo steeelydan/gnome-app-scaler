@@ -7,6 +7,8 @@ import sys
 from pathlib import Path
 import subprocess
 
+version = '1.0.0'
+
 
 def error(message):
     print(message)
@@ -93,6 +95,8 @@ if __name__ == '__main__':
 
     chosen_preset = sys.argv[1]
 
+    print(f"gnome-app-scaler v. {version}\n")
+
     with open('settings.json', 'r') as settings_file:
         settings_parsed = json.loads(settings_file.read())
         presets = settings_parsed['presets']
@@ -109,3 +113,5 @@ if __name__ == '__main__':
                               firefox_config=config['firefox'])
             elif app_name == 'chromium':
                 apply_chromium(presets[chosen_preset]['chromium'])
+
+        print('\nRestart Firefox & Chromium to see the changes.')
