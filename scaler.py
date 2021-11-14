@@ -87,7 +87,7 @@ if __name__ == '__main__':
     ):
         error('This program is only useful on Linux with Gnome desktop.')
 
-    settings_path = os.path.join(Path(__file__).parent.resolve(), 'settings.json')
+    settings_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'settings.json')
 
     if not os.path.isfile(settings_path):
         error('Error: No settings.json found.')
