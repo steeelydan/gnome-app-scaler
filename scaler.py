@@ -87,7 +87,9 @@ if __name__ == '__main__':
     ):
         error('This program is only useful on Linux with Gnome desktop.')
 
-    if not os.path.isfile('settings.json'):
+    settings_path = os.path.join(Path(__file__).parent.resolve(), 'settings.json')
+
+    if not os.path.isfile(settings_path):
         error('Error: No settings.json found.')
 
     if len(sys.argv) < 2:
@@ -97,7 +99,7 @@ if __name__ == '__main__':
 
     print(f"gnome-app-scaler v. {version}\n")
 
-    with open('settings.json', 'r') as settings_file:
+    with open(settings_path, 'r') as settings_file:
         settings_parsed = json.loads(settings_file.read())
         presets = settings_parsed['presets']
         config = settings_parsed['config']
