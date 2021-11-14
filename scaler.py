@@ -43,28 +43,24 @@ def apply_gnome(gnome_settings):
 def apply_firefox(firefox_settings, firefox_config):
     firefox_profile_dir = f"{Path.home()}/.mozilla/firefox/{firefox_config['profile_folder']}/"
     user_js_path = firefox_profile_dir + 'user.js'
-
     new_line = f"user_pref('layout.css.devPixelsPerPx', '{firefox_settings['scale']}');\n"
 
     lines = []
-
     if not os.path.isfile(user_js_path):
-        user_js_raw = open(user_js_path, 'x')
         lines.append(new_line)
     else:
-        user_js_raw = open(user_js_path, 'r')
-        lines = user_js_raw.readlines()
+        with open(user_js_path, 'r') as user_js_file:
+            lines = user_js_file.readlines()
         if len(lines) == 0:
             lines.append(new_line)
         else:
             for index, line in enumerate(lines):
                 if line.startswith('user_pref'):
                     lines[index] = new_line
-    user_js_raw.close()
-    user_js_raw = open(user_js_path, 'w')
-    user_js_raw.writelines(lines)
-    print(
-        f"Firefox scaling set to {firefox_settings['scale']}")
+
+    with open(user_js_path, 'w+') as user_js_file:
+        user_js_file.writelines(lines)
+    print(f"Firefox scaling set to {firefox_settings['scale']}")
 
 
 def apply_chromium(chromium_settings):
