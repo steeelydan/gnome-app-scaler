@@ -6,7 +6,7 @@ Useful when alternating between a laptop screen and an external screen with diff
 
 Includes presets for
 
--   Gnome Desktop (font size, dock icons, cursor)
+-   Gnome Desktop (display scale 1x or 2x, font size, dock icons, cursor)
 -   Firefox
 -   Chromium
 
@@ -18,7 +18,7 @@ Python 3
 
 ## Usage
 
--   Rename `settings.json.example` to `settings.json` & enter your Firefox profile path
+-   Rename `settings.example.json` to `settings.json` & enter your Firefox profile path
 -   Edit `settings.json` as desired or add presets
 -   `./scaler.py <PRESET>`
 

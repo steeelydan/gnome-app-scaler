@@ -9,7 +9,8 @@
             "gnome": {
                 "font_scale": 1.0,
                 "icon_size": 32,
-                "cursor_size": 24
+                "cursor_size": 24,
+                "display_scale": 1
             },
             "firefox": {
                 "scale": 1.0
@@ -22,7 +23,8 @@
             "gnome": {
                 "font_scale": 1.2,
                 "icon_size": 36,
-                "cursor_size": 32
+                "cursor_size": 32,
+                "display_scale": 1
             },
             "firefox": {
                 "scale": 1.25
@@ -33,9 +35,10 @@
         },
         "4k32inch": {
             "gnome": {
-                "font_scale": 0.75,
-                "icon_size": 26,
-                "cursor_size": 26
+                "font_scale": 1.5,
+                "icon_size": 52,
+                "cursor_size": 52,
+                "display_scale": 2
             },
             "firefox": {
                 "scale": 1.6

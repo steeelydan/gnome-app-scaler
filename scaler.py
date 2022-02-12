@@ -16,9 +16,17 @@ def error(message):
 
 
 def apply_gnome(gnome_settings):
+    display_scale = 'display_scale' in gnome_settings and gnome_settings['display_scale']
     font_scale = 'font_scale' in gnome_settings and gnome_settings['font_scale']
     icon_size = 'icon_size' in gnome_settings and gnome_settings['icon_size']
     cursor_size = 'cursor_size' in gnome_settings and gnome_settings['cursor_size']
+
+    if display_scale:
+        if 0 == os.system(f"gsettings set org.gnome.desktop.interface scaling-factor {display_scale}"):
+            print(f"Gnome display scale set to {display_scale}")
+        else:
+            error(
+                f"Error: Gnome display scale could not be set to {display_scale}")
 
     if font_scale:
         if 0 == os.system(f"gsettings set org.gnome.desktop.interface text-scaling-factor {font_scale}"):
@@ -87,7 +95,8 @@ if __name__ == '__main__':
     ):
         error('This program is only useful on Linux with Gnome desktop.')
 
-    settings_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'settings.json')
+    settings_path = os.path.join(os.path.dirname(
+        os.path.abspath(__file__)), 'settings.json')
 
     if not os.path.isfile(settings_path):
         error('Error: No settings.json found.')
