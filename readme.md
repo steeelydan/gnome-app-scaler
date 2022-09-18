@@ -14,7 +14,8 @@ Of course, you're free to extend the script according to your needs.
 
 ## Requirements
 
-Python 3
+- Paths are working for Ubuntu 22.04
+- Python 3
 
 ## Usage
 

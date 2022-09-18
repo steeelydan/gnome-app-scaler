@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 import subprocess
 
-version = '1.0.0'
+version = '2.0.0'
 
 
 def error(message):
@@ -51,7 +51,7 @@ def apply_gnome(gnome_settings):
 
 
 def apply_firefox(firefox_settings, firefox_config):
-    firefox_profile_dir = f"{Path.home()}/.mozilla/firefox/{firefox_config['profile_folder']}/"
+    firefox_profile_dir = f"{Path.home()}/snap/firefox/common/.mozilla/firefox/{firefox_config['profile_folder']}/"
     user_js_path = firefox_profile_dir + 'user.js'
     new_line = f"user_pref('layout.css.devPixelsPerPx', '{firefox_settings['scale']}');\n"
 
