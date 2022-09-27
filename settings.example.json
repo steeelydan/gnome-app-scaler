@@ -37,11 +37,11 @@
             "gnome": {
                 "font_scale": 1.5,
                 "icon_size": 52,
-                "cursor_size": 52,
+                "cursor_size": 42,
                 "display_scale": 2
             },
             "firefox": {
-                "scale": 1.6
+                "scale": 1.1
             },
             "chromium": {
                 "scale": 1.6
